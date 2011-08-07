@@ -226,20 +226,26 @@ copyex:
 /***************** CHECK_CODE_POSITION ******************************************/
 
 /***************** CHECK_BOOT_FLASH ******************************************/
-	ldr	r1, =( (4<<28)|(3<<4)|(3<<2) )		/* address of Internal SRAM  0x4000003C*/
-	mov	r0, #0		/* r0 = 0 */
-	str	r0, [r1]
+@	ldr	r1, =( (4<<28)|(3<<4)|(3<<2) )		/* address of Internal SRAM  0x4000003C*/
+@	mov	r0, #0		/* r0 = 0 */
+@	str	r0, [r1]
 
-
-	mov	r1, #0x3c		/* address of men  0x0000003C*/
-	ldr	r0, [r1]
-	cmp	r0, #0
-	bne	relocate
+@	mov	r1, #0x3c		/* address of men  0x0000003C*/
+@	ldr	r0, [r1]
+@	cmp	r0, #0
+@	bne	relocate
 
 	/* recovery  */
-	ldr	r0, =(0xdeadbeef)
-	ldr	r1, =( (4<<28)|(3<<4)|(3<<2) )
-	str	r0, [r1]
+@	ldr	r0, =(0xdeadbeef)
+@	ldr	r1, =( (4<<28)|(3<<4)|(3<<2) )
+@	str	r0, [r1]
+
+#define BWSCON 0x48000000
+    ldr r0, =BWSCON
+    ldr r0, [r0]    
+    ands r0, r0, #6    
+    cmp r0, #0    
+    bne relocate
 /***************** CHECK_BOOT_FLASH ******************************************/
 
 /***************** NAND_BOOT *************************************************/
@@ -395,9 +401,9 @@ loop3:
 /***************** NOR_BOOT *************************************************/
 relocate:				/* relocate U-Boot to RAM	    */
       /*********** CHECK_FOR_MAGIC_NUMBER***************/
-	ldr	r1, =(0xdeadbeef)
-	cmp	r0, r1
-	bne	loop3
+@	ldr	r1, =(0xdeadbeef)
+@	cmp	r0, r1
+@	bne	loop3
       /*********** CHECK_FOR_MAGIC_NUMBER***************/
 	adr	r0, _start		/* r0 <- current position of code   */
 	ldr	r1, _TEXT_BASE		/* test if we run from flash or RAM */

@@ -137,16 +137,16 @@
 /* USB Support*/
 
 #define CONFIG_BOOTDELAY	1
-#define CONFIG_BOOTARGS		"noinitrd root=/dev/nfs rw nfsroot=192.168.0.1:/home/tekkaman/working/nfs/rootfs ip=192.168.0.2:192.168.0.1::255.255.255.0 console=ttySAC0,115200 init=/linuxrc mem=64M"
-#define CONFIG_ETHADDR	        08:08:11:18:12:27
-#define CONFIG_NETMASK          255.255.255.0
-#define CONFIG_IPADDR		192.168.0.2
-#define CONFIG_SERVERIP		192.168.0.1
-#define CONFIG_GATEWAYIP	192.168.0.1
+#define CONFIG_BOOTARGS		"noinitrd root=/dev/nfs rw nfsroot=192.168.1.101:/opt/nfs/rootfs ip=192.168.1.188:192.168.1.1::255.255.255.0 console=ttySAC0,115200 init=/linuxrc mem=64M"
+#define CONFIG_ETHADDR	    08:08:11:18:12:27
+#define CONFIG_NETMASK      255.255.255.0
+#define CONFIG_IPADDR		192.168.1.188
+#define CONFIG_SERVERIP		192.168.1.101
+#define CONFIG_GATEWAYIP	192.168.1.1
 #define CONFIG_OVERWRITE_ETHADDR_ONCE
 
 /*#define CONFIG_BOOTFILE	"elinos-lart" */
-#define CONFIG_BOOTCOMMAND	"nfs 0x30008000 192.168.0.1:/home/tekkaman/working/nfs/zImage.img;bootm"
+#define CONFIG_BOOTCOMMAND	"nfs 0x30008000 192.168.1.101:/opt/nfs/zImage.img;bootm"
 #define	CONFIG_EXTRA_ENV_SETTINGS					\
 	"tekkaman=bmp d 70000\0 "				\
 	"stdin=serial\0"					\
@@ -164,7 +164,7 @@
  * Miscellaneous configurable options
  */
 #define	CONFIG_SYS_LONGHELP				/* undef to save memory		*/
-#define	CONFIG_SYS_PROMPT		"[u-boot@MINI2440]# "	/* Monitor Command Prompt	*/
+#define	CONFIG_SYS_PROMPT		"u-boot> "	/* Monitor Command Prompt	*/
 #define	CONFIG_SYS_CBSIZE		256		/* Console I/O Buffer Size	*/
 #define	CONFIG_SYS_PBSIZE (CONFIG_SYS_CBSIZE+sizeof(CONFIG_SYS_PROMPT)+16) /* Print Buffer Size */
 #define	CONFIG_SYS_MAXARGS		16		/* max number of command args	*/
