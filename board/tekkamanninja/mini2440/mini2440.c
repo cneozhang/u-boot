@@ -212,13 +212,7 @@ void board_video_init(GraphicDevice *pGD)
 	lcd->LCDCON1 = 0x00000378; /* CLKVAL=4, BPPMODE=16bpp, TFT, ENVID=0 */ 
 	lcd->LCDCON2 = (VBPD_240320<<24)|(LINEVAL_TFT_240320<<14)|(VFPD_240320<<6)|(VSPW_240320); 
 	lcd->LCDCON3 = (HBPD_240320<<19)|(HOZVAL_TFT_240320<<8)|(HFPD_240320); 
-
-	if ( (nand->NFCONF) & 0x08 )	{ 
-	lcd->LCDCON4 = (MVAL<<8)|(HSPW_240320_TD);
-	}
-	else	{
-	  lcd->LCDCON4 = (MVAL<<8)|(HSPW_240320_NEC);
-	}
+    lcd->LCDCON4 = (MVAL<<8)|(HSPW_240320_NEC);
 	
 	lcd->LCDCON5 = 0x00000f09; 
 	lcd->LPCSEL  = 0x00000000; 
