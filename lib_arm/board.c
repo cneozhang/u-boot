@@ -144,11 +144,11 @@ static int display_banner (void)
 {
 #if defined(CONFIG_MINI2440_LED) 	
 	struct s3c24x0_gpio * const gpio = s3c24x0_get_base_gpio();
-	writel(0x101, &gpio->GPBDAT);  //tekkamanninja
+	writel(0x100, &gpio->GPBDAT);  //turn off beep
 #endif
 	printf ("\n\n%s\n\n", version_string);	
-	printf (" modified by tekkamanninja (tekkamanninja@163.com)\n");
-	printf (" Love Linux forever!!\n\n");
+//	printf (" modified by tekkamanninja (tekkamanninja@163.com)\n");
+//	printf (" Love Linux forever!!\n\n");
 	debug ("U-Boot code: %08lX -> %08lX  BSS: -> %08lX\n",
 	       _armboot_start, _bss_start, _bss_end);
 #ifdef CONFIG_MODEM_SUPPORT
